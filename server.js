@@ -11,16 +11,16 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
 app.get('/contactlist', function(req,res){
-  console.log('I recieved a get');
+//  console.log('I recieved a get');
 db.contactlist.find(function(err,docs){
-  console.log(docs);
+//  console.log(docs);
   res.json(docs);
 })
 
 })
 
 app.post('/contactlist', function(req,res){
-  console.log(req.body);
+  //console.log(req.body);
   db.contactlist.insert(req.body, function(err, doc) {
    res.json(doc);
  });
@@ -28,7 +28,7 @@ app.post('/contactlist', function(req,res){
 
 app.delete('/contactlist/:id', function (req, res) {
   var id = req.params.id;
-  console.log(id);
+//  console.log(id);
   db.contactlist.remove({_id: mongojs.ObjectId(id)}, function (err, doc) {
     res.json(doc);
   });
@@ -38,7 +38,7 @@ app.delete('/contactlist/:id', function (req, res) {
 
 app.get('/contactlist/:id', function (req, res) {
   var id = req.params.id;
-  console.log(id);
+  //console.log(id);
   db.contactlist.findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
     res.json(doc);
   });
@@ -47,7 +47,7 @@ app.get('/contactlist/:id', function (req, res) {
 
 app.put('/contactlist/:id', function (req, res) {
   var id = req.params.id;
-  console.log(req.body.name);
+//  console.log(req.body.name);
   db.contactlist.findAndModify({
     query: {_id: mongojs.ObjectId(id)},
     update: {$set: {firstname: req.body.firstname, lastname: req.body.lastname, dateofbirth: req.body.dateofbirth, zipcode: req.body.zipcode}},
